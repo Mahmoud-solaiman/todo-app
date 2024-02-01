@@ -1,1 +1,13 @@
 @import 'resets';
+@import 'variables';
+
+@font-face {
+    font-family:"Josefin Sans";
+    src: url('../Josefin_Sans/JosefinSans-VariableFont_wght.ttf');
+}
+
+body {
+    font-family:"Josefin Sans";
+}
+
+@import 'background';
