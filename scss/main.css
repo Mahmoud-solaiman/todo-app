@@ -20,11 +20,83 @@ body {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 @media (max-width: 375px) {
   .container {
     background-image: url("../imgs/bg-mobile-dark.jpg");
+  }
+}
+.app-container {
+  width: 45%;
+  padding-top: 100px;
+}
+
+.todo-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.todo-title .todo-logo {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  color: #fff;
+}
+.todo-title .light-dark-theme {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 375px) {
+  .app-container {
+    width: 90%;
+    padding-top: 40px;
+  }
+  .todo-title {
+    margin-bottom: 30px;
+  }
+  .todo-title .todo-logo {
+    font-size: 2rem;
+  }
+}
+.field-container {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  background-color: #25273c;
+  border-radius: 5px;
+}
+.field-container #todos-grapper {
+  font-size: 1.2rem;
+  color: #cacde8;
+  background-color: transparent;
+  border: none;
+  font-weight: 200;
+  padding: 18px 0 18px 20px;
+  outline: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.field-container .add-btn {
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #3a7bfd;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+.field-container .add-btn:hover {
+  opacity: 0.85;
+}
+.field-container .add-btn:active {
+  opacity: 0.8;
+}
+
+@media (max-width: 375px) {
+  .field-container {
+    grid-template-columns: 1fr 60px;
   }
 }/*# sourceMappingURL=main.css.map */
