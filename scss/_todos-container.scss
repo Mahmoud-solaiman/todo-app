@@ -1,0 +1,48 @@
+.todos-container {
+    margin-top:30px;
+    list-style:none;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    background-color:$todos-container-bg;
+
+    & li {
+        display:grid;
+        grid-template-columns:25px 1fr 50px;
+        gap:20px;
+        align-items:center;
+        color:$todos-color;
+        cursor:pointer;
+        padding:20px ;
+        border-bottom:1px solid  $todo-bottom-border;
+
+        &:hover .delete-btn {
+            display:block;
+        }
+
+        & .todo-text {
+            font-weight:400;
+            &:hover {
+                color:$todos-hover-color;
+            }
+        }
+    }
+}
+
+.unchecked-icon {
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    border:1px solid $todo-bottom-border; 
+    line-height:25px;
+    text-align:center;
+}
+
+.delete-btn {
+    justify-self:end;
+    display:none;
+}
+
+.checked {
+    text-decoration:line-through;
+    color:$checked-todos-color;
+}

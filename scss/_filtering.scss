@@ -1,0 +1,28 @@
+.control-panel {
+    background-color:$todos-container-bg;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    
+    & h4 {
+        color:$filter-btns-color;
+        cursor:pointer;
+    }
+
+    & .clear-completed:hover, 
+    & .filtering-btns-container h4:not(.selected):hover {
+        color:$todos-color;
+    }
+}
+
+.filtering-btns-container {
+    display:flex;
+    gap:20px;
+
+    & .selected {
+        color:$btn-selected;
+    }
+}

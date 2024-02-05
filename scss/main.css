@@ -7,6 +7,7 @@
 @font-face {
   font-family: "Josefin Sans";
   src: url("../Josefin_Sans/JosefinSans-VariableFont_wght.ttf");
+  src: url("../Josefin_Sans/static/JosefinSans-Regular.ttf");
 }
 body {
   font-family: "Josefin Sans";
@@ -29,14 +30,14 @@ body {
 }
 .app-container {
   width: 45%;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 .todo-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .todo-title .todo-logo {
   font-size: 2.6rem;
@@ -70,7 +71,7 @@ body {
 }
 .field-container #todos-grapper {
   font-size: 1.2rem;
-  color: #cacde8;
+  color: #e4e5f1;
   background-color: transparent;
   border: none;
   font-weight: 200;
@@ -99,4 +100,74 @@ body {
   .field-container {
     grid-template-columns: 1fr 60px;
   }
+}
+.todos-container {
+  margin-top: 30px;
+  list-style: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #25273c;
+}
+.todos-container li {
+  display: grid;
+  grid-template-columns: 25px 1fr 50px;
+  gap: 20px;
+  align-items: center;
+  color: #e4e5f1;
+  cursor: pointer;
+  padding: 20px;
+  border-bottom: 1px solid #393a4c;
+}
+.todos-container li:hover .delete-btn {
+  display: block;
+}
+.todos-container li .todo-text {
+  font-weight: 400;
+}
+.todos-container li .todo-text:hover {
+  color: #cacde8;
+}
+
+.unchecked-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #393a4c;
+  line-height: 25px;
+  text-align: center;
+}
+
+.delete-btn {
+  justify-self: end;
+  display: none;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: #393a4c;
+}
+
+.control-panel {
+  background-color: #25273c;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.control-panel h4 {
+  color: #4d5066;
+  cursor: pointer;
+}
+.control-panel .clear-completed:hover, .control-panel .filtering-btns-container h4:not(.selected):hover {
+  color: #e4e5f1;
+}
+
+.filtering-btns-container {
+  display: flex;
+  gap: 20px;
+}
+.filtering-btns-container .selected {
+  color: #3a7bfd;
 }/*# sourceMappingURL=main.css.map */
