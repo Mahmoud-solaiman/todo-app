@@ -26,3 +26,37 @@
         color:$btn-selected;
     }
 }
+
+.filtering-btns-mobile {
+    display:none;
+}
+
+@media (max-width:375px){
+    .control-panel {
+        & h4 {
+            font-size:.8rem;
+        }
+    }
+    .filtering-btns-container {
+        display:none;
+    }
+
+    .filtering-btns-mobile {
+        margin-top:20px;
+        background-color:$todos-container-bg;
+        padding:1.1em 0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:20px;
+        border-radius:5px;
+
+        & h4:not(.selected) {
+            color:$filter-btns-color;
+        }
+
+        & .selected {
+            color:$btn-selected;
+        }
+    }
+}

@@ -46,3 +46,28 @@
     text-decoration:line-through;
     color:$checked-todos-color;
 }
+
+@media (max-width:375px){
+    .todos-container {
+        margin-top:20px;
+
+        & li {
+            gap:10px;
+        }
+
+        & .todo-text {
+            font-size:.9rem;
+        }
+    }
+    .unchecked-icon {
+        width:22px;
+        height:22px;
+    }
+    .delete-btn {
+        display:block;
+        & img {
+            width:15px;
+        }
+    }
+    
+}
