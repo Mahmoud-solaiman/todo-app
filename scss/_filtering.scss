@@ -60,3 +60,29 @@
         }
     }
 }
+
+@media (max-width:750px){
+    .filtering-btns-container {
+        display:none;
+    }
+    .filtering-btns-mobile {
+        margin-top:20px;
+        background-color:$todos-container-bg;
+        padding:1.1em 0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:20px;
+        border-radius:5px;
+
+        & h4:not(.selected) {
+            color:$filter-btns-color;
+            cursor: pointer;
+        }
+
+        & .selected {
+            color:$btn-selected;
+            cursor: pointer;
+        }
+    }
+}

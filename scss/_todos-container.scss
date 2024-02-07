@@ -28,7 +28,7 @@
     }
 }
 
-.unchecked-icon {
+.check-box {
     width:25px;
     height:25px;
     border-radius:50%;
@@ -45,6 +45,11 @@
 .checked {
     text-decoration:line-through;
     color:$checked-todos-color;
+    font-weight:400;
+}
+
+.checked-box {
+    background:$todo-checked;
 }
 
 @media (max-width:375px){
@@ -59,7 +64,7 @@
             font-size:.9rem;
         }
     }
-    .unchecked-icon {
+    .check-box {
         width:22px;
         height:22px;
     }
