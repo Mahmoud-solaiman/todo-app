@@ -27,6 +27,7 @@ body {
 @media (max-width: 375px) {
   .container {
     background-image: url("../imgs/bg-mobile-dark.jpg");
+    justify-content: center;
   }
 }
 .app-container {
@@ -52,6 +53,11 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+  .app-container {
+    width: 60%;
+  }
+}
 @media (max-width: 375px) {
   .app-container {
     width: 90%;
@@ -62,11 +68,6 @@ body {
   }
   .todo-title .todo-logo {
     font-size: 2rem;
-  }
-}
-@media (max-width: 1000px) {
-  .app-container {
-    width: 60%;
   }
 }
 .field-container {
@@ -171,6 +172,7 @@ body {
   .check-box {
     width: 22px;
     height: 22px;
+    line-height: 22px;
   }
   .delete-btn {
     display: block;

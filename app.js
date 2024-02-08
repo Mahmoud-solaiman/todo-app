@@ -1,7 +1,7 @@
 //Model
 const inputField = document.getElementById('todos-grapper');
 const addBtn = document.querySelector('.add-btn');
-
+const clearCompletedBtn = document.querySelector('.clear-completed');
 //View
 function addTodo(){
     const inputFieldValue = inputField.value;
@@ -21,7 +21,20 @@ function addTodo(){
         todosContainer.appendChild(newTodoHTML);
         //Reset the field value
         inputField.value = '';
+        //Set the left items value
+        leftItems();
     }
+}
+
+function leftItems(){
+    
+    const checkBoxes = [...document.querySelectorAll('.check-box')];
+    const leftItemsNum = checkBoxes.filter(checkBox=> {
+        return !(checkBox.classList.contains('checked-box'));
+    });
+
+    const leftItems = document.querySelector('.left-items');
+    leftItems.textContent = `${leftItemsNum.length} items left`;
 }
 
 function deleteTodo(){
@@ -32,6 +45,8 @@ function deleteTodo(){
             const todo = deleteBtn.parentElement;
             //Remove todo
             todo.remove();
+            //Set the left items value
+            leftItems();
         });
     });
 }
@@ -51,6 +66,8 @@ function checkTodo(){
                 checkBox.classList.add('checked-box');
                 //line-through the todo text
                 todoText.className = 'checked';
+                //Set the left items value
+                leftItems();
             }
         });
     });
@@ -66,6 +83,16 @@ function implementChanges(){
     todosContainer.innerHTML = localStorage.getItem('todos');
 }
 
+function clearCompleted(){
+    //Select the completed todos
+    const completedTodos = document.querySelectorAll('.checked-box');
+    //Delete all the completed todos at once
+    completedTodos.forEach(completedTodo=>{
+        const todo = completedTodo.parentElement;
+        todo.remove();
+    });
+}
+
 //Controller
 //Adding todos
 addBtn.addEventListener('pointerup', addTodo);
@@ -73,3 +100,5 @@ addBtn.addEventListener('pointerup', addTodo);
 setInterval(deleteTodo, 1);
 //Checking todos
 setInterval(checkTodo, 1);
+//Clear completed todos
+clearCompletedBtn.addEventListener('pointerup', clearCompleted);
