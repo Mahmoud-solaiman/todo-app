@@ -2,6 +2,10 @@
 const inputField = document.getElementById('todos-grapper');
 const addBtn = document.querySelector('.add-btn');
 const clearCompletedBtn = document.querySelector('.clear-completed');
+const allBtn = document.querySelector('.all-btn');
+const activeBtn = document.querySelector('.active-btn');
+const completedBtn = document.querySelector('.completed-btn');
+
 //View
 function addTodo(){
     const inputFieldValue = inputField.value;
@@ -93,6 +97,46 @@ function clearCompleted(){
     });
 }
 
+function showAll(){
+    const todos = document.querySelectorAll('li');
+    todos.forEach(todo=>{
+        todo.style.display = 'grid';
+    });
+    activeBtn.classList.remove('selected');
+    completedBtn.classList.remove('selected');
+    allBtn.classList.add('selected');
+}
+
+function showCompleted(){
+    const checkBoxes = document.querySelectorAll('.checked-box');
+    const allTodos = document.querySelectorAll('li');
+    allTodos.forEach(todo=>{
+        todo.style.display = 'none';
+    });
+    activeBtn.classList.remove('selected');
+    completedBtn.classList.add('selected');
+    allBtn.classList.remove('selected');
+    checkBoxes.forEach(checkBox=>{
+        const todo = checkBox.parentElement;
+        todo.style.display = 'grid';
+    });
+}
+
+function showActive(){
+    const checkBoxes = document.querySelectorAll('.checked-box');
+    const allTodos = document.querySelectorAll('li');
+    allTodos.forEach(todo=>{
+        todo.style.display = 'grid';
+    });
+    activeBtn.classList.add('selected');
+    completedBtn.classList.remove('selected');
+    allBtn.classList.remove('selected');
+    checkBoxes.forEach(checkBox=>{
+        const todo = checkBox.parentElement;
+        todo.style.display = 'none';
+    });
+}
+
 //Controller
 //Adding todos
 addBtn.addEventListener('pointerup', addTodo);
@@ -102,3 +146,9 @@ setInterval(deleteTodo, 1);
 setInterval(checkTodo, 1);
 //Clear completed todos
 clearCompletedBtn.addEventListener('pointerup', clearCompleted);
+//Show all todos
+allBtn.addEventListener('pointerup', showAll);
+//Show completed todos
+completedBtn.addEventListener('pointerup', showCompleted);
+//Show active todos
+activeBtn.addEventListener('pointerup', showActive);
