@@ -5,6 +5,11 @@ const clearCompletedBtn = document.querySelector('.clear-completed');
 const allBtn = document.querySelector('.all-btn');
 const activeBtn = document.querySelector('.active-btn');
 const completedBtn = document.querySelector('.completed-btn');
+const todosContainer = document.querySelector('.todos-container');
+const allBtnMobile = document.querySelector('.all-btn-mobile');
+const completedBtnMobile = document.querySelector('.completed-btn-mobile');
+const activeBtnMobile = document.querySelector('.active-btn-mobile');
+const lightDarkTheme = document.querySelector('.light-dark-theme');
 
 //View
 function addTodo(){
@@ -27,7 +32,9 @@ function addTodo(){
         inputField.value = '';
         //Set the left items value
         leftItems();
+        filterTodos();
     }
+    saveChanges();
 }
 
 function leftItems(){
@@ -51,6 +58,7 @@ function deleteTodo(){
             todo.remove();
             //Set the left items value
             leftItems();
+            saveChanges();
         });
     });
 }
@@ -72,6 +80,10 @@ function checkTodo(){
                 todoText.className = 'checked';
                 //Set the left items value
                 leftItems();
+                if(activeBtn.classList.contains('selected') || activeBtnMobile.classList.contains('selected')){
+                    checkBox.parentElement.style.display = 'none';
+                }
+                saveChanges();
             }
         });
     });
@@ -97,44 +109,73 @@ function clearCompleted(){
     });
 }
 
-function showAll(){
+function showAll(all,active,completed){
     const todos = document.querySelectorAll('li');
     todos.forEach(todo=>{
         todo.style.display = 'grid';
     });
-    activeBtn.classList.remove('selected');
-    completedBtn.classList.remove('selected');
-    allBtn.classList.add('selected');
+    active.classList.remove('selected');
+    completed.classList.remove('selected');
+    all.classList.add('selected');
 }
 
-function showCompleted(){
+function showCompleted(all,active,completed){
     const checkBoxes = document.querySelectorAll('.checked-box');
     const allTodos = document.querySelectorAll('li');
     allTodos.forEach(todo=>{
         todo.style.display = 'none';
     });
-    activeBtn.classList.remove('selected');
-    completedBtn.classList.add('selected');
-    allBtn.classList.remove('selected');
+    active.classList.remove('selected');
+    completed.classList.add('selected');
+    all.classList.remove('selected');
     checkBoxes.forEach(checkBox=>{
         const todo = checkBox.parentElement;
         todo.style.display = 'grid';
     });
 }
 
-function showActive(){
+function showActive(all,active,completed){
     const checkBoxes = document.querySelectorAll('.checked-box');
     const allTodos = document.querySelectorAll('li');
     allTodos.forEach(todo=>{
         todo.style.display = 'grid';
     });
-    activeBtn.classList.add('selected');
-    completedBtn.classList.remove('selected');
-    allBtn.classList.remove('selected');
+    active.classList.add('selected');
+    completed.classList.remove('selected');
+    all.classList.remove('selected');
     checkBoxes.forEach(checkBox=>{
         const todo = checkBox.parentElement;
         todo.style.display = 'none';
     });
+}
+
+function filterTodos(){
+    const allTodos = document.querySelectorAll('li');
+    const checkedTodos = document.querySelectorAll('.checked-box');
+
+    if(allBtn.classList.contains('selected') || allBtnMobile.classList.contains('selected')){
+        allTodos.forEach(todo=>{
+            todo.style.display = 'grid';
+        });
+    } if(completedBtn.classList.contains('selected') || completedBtnMobile.classList.contains('selected')){
+        allTodos.forEach(todo=>{
+            todo.style.display = 'none';
+        });
+        checkedTodos.forEach(todo=>{
+            const parentTodo = todo.parentElement;
+            parentTodo.style.display = 'grid';
+        });
+    }
+}
+
+function toggleLightDark(){
+    const icon = document.getElementById('light-dark-theme-icon');
+    if(icon.src === 'http://127.0.0.1:5500/icons/icon-sun.svg'){
+        icon.src = 'http://127.0.0.1:5500/icons/icon-moon.svg';
+        alert('Light mood is coming soon');
+    } else {
+        icon.src = 'http://127.0.0.1:5500/icons/icon-sun.svg';
+    }
 }
 
 //Controller
@@ -147,8 +188,19 @@ setInterval(checkTodo, 1);
 //Clear completed todos
 clearCompletedBtn.addEventListener('pointerup', clearCompleted);
 //Show all todos
-allBtn.addEventListener('pointerup', showAll);
+allBtn.addEventListener('pointerup', showAll.bind(null, allBtn, activeBtn, completedBtn));
 //Show completed todos
-completedBtn.addEventListener('pointerup', showCompleted);
+completedBtn.addEventListener('pointerup', showCompleted.bind(null, allBtn, activeBtn, completedBtn));
 //Show active todos
-activeBtn.addEventListener('pointerup', showActive);
+activeBtn.addEventListener('pointerup', showActive.bind(null, allBtn, activeBtn, completedBtn));
+//Getting the todos from the local storage
+todosContainer.innerHTML = localStorage.getItem('todos');
+leftItems();
+
+//Filtering buttons for phones
+allBtnMobile.addEventListener('pointerup', showAll.bind(null, allBtnMobile, activeBtnMobile, completedBtnMobile));
+activeBtnMobile.addEventListener('pointerup', showActive.bind(null, allBtnMobile, activeBtnMobile, completedBtnMobile));
+completedBtnMobile.addEventListener('pointerup', showCompleted.bind(null, allBtnMobile, activeBtnMobile, completedBtnMobile));
+
+//Toggle light and dark themes
+lightDarkTheme.addEventListener('pointerup', toggleLightDark);
