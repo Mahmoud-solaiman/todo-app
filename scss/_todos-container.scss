@@ -52,6 +52,31 @@
     background:$todo-checked;
 }
 
+//Light theme styles 
+.todos-container-light {
+    background-color:$primary-light-color;
+
+    & li {
+        border-bottom:1px solid $background-light;
+
+        & .todo-text {
+            color:$filter-btns-color-light-hover;
+
+            &:hover {
+                color:$filter-btns-color-light;
+            }
+        }
+    }
+}
+
+.check-box-light {
+    border:1px solid $background-light;
+}
+
+.checked-light {
+    color:$todos-color;
+}
+
 @media (max-width:375px){
     .todos-container {
         margin-top:20px;

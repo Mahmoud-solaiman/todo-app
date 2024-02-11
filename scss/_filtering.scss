@@ -1,3 +1,4 @@
+//Dark theme styles
 .control-panel {
     background-color:$todos-container-bg;
     border-bottom-left-radius: 5px;
@@ -31,6 +32,19 @@
     display:none;
 }
 
+//Light theme styles
+.control-panel-light {
+    background-color: $primary-light-color;
+
+    & h4 {
+        color:$filter-btns-color-light;
+    }
+    & .clear-completed:hover,
+    & .filtering-btns-container h4:not(.selected):hover {
+        color:$filter-btns-color-light-hover;
+    }
+}
+
 @media (max-width:375px){
     .control-panel {
         & h4 {
@@ -59,6 +73,11 @@
             color:$btn-selected;
         }
     }
+
+    //Light theme styles 
+    .filtering-btns-mobile-light {
+        background-color: $primary-light-color;
+    }
 }
 
 @media (max-width:750px){
@@ -84,5 +103,10 @@
             color:$btn-selected;
             cursor: pointer;
         }
+    }
+
+    //Light theme styles 
+    .filtering-btns-mobile-light {
+        background-color: $primary-light-color;
     }
 }

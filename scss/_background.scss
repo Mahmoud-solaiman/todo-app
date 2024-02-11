@@ -1,3 +1,4 @@
+//Dark theme styles
 .container {
     min-width:100%;
     min-height:100vh;
@@ -9,11 +10,21 @@
     padding-bottom:20px;
 }
 
+//Light theme styles 
+.container-light {
+    background-color:$background-light;
+    background-image:url('../imgs/bg-desktop-light.jpg');
+}
+
 
 
 @media (max-width:375px) {
     .container {
         background-image:url('../imgs/bg-mobile-dark.jpg');
-        justify-content:center;
+        justify-content: center;
+    }
+
+    .container-light {
+        background-image: url('../imgs/bg-mobile-light.jpg');
     }
 }

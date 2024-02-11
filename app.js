@@ -13,6 +13,7 @@ const lightDarkTheme = document.querySelector('.light-dark-theme');
 
 //View
 function addTodo(){
+    const icon = document.getElementById('light-dark-theme-icon');
     const inputFieldValue = inputField.value;
     const todosContainer = document.querySelector('.todos-container');
     //Check if the input field is empty or not
@@ -33,6 +34,13 @@ function addTodo(){
         //Set the left items value
         leftItems();
         filterTodos();
+        //Light theme check box
+        if(icon.src === 'http://127.0.0.1:5500/icons/icon-moon.svg'){
+            const checkBoxesLight = document.querySelectorAll('.check-box');
+            checkBoxesLight.forEach(checkBoxLight=>{
+                checkBoxLight.classList.add('check-box-light');
+            });
+        }
     }
     saveChanges();
 }
@@ -170,11 +178,32 @@ function filterTodos(){
 
 function toggleLightDark(){
     const icon = document.getElementById('light-dark-theme-icon');
+    const containerLight = document.querySelector('.container');
+    const fieldContainerLight = document.querySelector('.field-container');
+    const controlPanelLight = document.querySelector('.control-panel');
+    const filteringBtnsMobileLight = document.querySelector('.filtering-btns-mobile');
+    const checkBoxesLight = document.querySelectorAll('.check-box');
+
     if(icon.src === 'http://127.0.0.1:5500/icons/icon-sun.svg'){
         icon.src = 'http://127.0.0.1:5500/icons/icon-moon.svg';
-        alert('Light mood is coming soon');
+        containerLight.classList.add('container-light');
+        fieldContainerLight.classList.add('field-container-light');
+        controlPanelLight.classList.add('control-panel-light');
+        todosContainer.classList.add('todos-container-light');
+        filteringBtnsMobileLight.classList.add('filtering-btns-mobile-light');
+        checkBoxesLight.forEach(checkBoxLight=>{
+            checkBoxLight.classList.add('check-box-light');
+        });
     } else {
         icon.src = 'http://127.0.0.1:5500/icons/icon-sun.svg';
+        containerLight.classList.remove('container-light');
+        fieldContainerLight.classList.remove('field-container-light');
+        controlPanelLight.classList.remove('control-panel-light');
+        todosContainer.classList.remove('todos-container-light');
+        filteringBtnsMobileLight.classList.remove('filtering-btns-mobile-light');
+        checkBoxesLight.forEach(checkBoxLight=>{
+            checkBoxLight.classList.remove('check-box-light');
+        });
     }
 }
 

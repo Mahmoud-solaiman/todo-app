@@ -24,10 +24,18 @@ body {
   padding-bottom: 20px;
 }
 
+.container-light {
+  background-color: #e4e5f1;
+  background-image: url("../imgs/bg-desktop-light.jpg");
+}
+
 @media (max-width: 375px) {
   .container {
     background-image: url("../imgs/bg-mobile-dark.jpg");
     justify-content: center;
+  }
+  .container-light {
+    background-image: url("../imgs/bg-mobile-light.jpg");
   }
 }
 .app-container {
@@ -74,7 +82,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 80px;
   background-color: #25273c;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 .field-container #todos-grapper {
   font-size: 1.2rem;
@@ -101,6 +109,10 @@ body {
 }
 .field-container .add-btn:active {
   opacity: 0.8;
+}
+
+.field-container-light {
+  background-color: #fafafa;
 }
 
 @media (max-width: 375px) {
@@ -159,6 +171,27 @@ body {
   background: linear-gradient(150deg, #57ddff, #c058f3);
 }
 
+.todos-container-light {
+  background-color: #fafafa;
+}
+.todos-container-light li {
+  border-bottom: 1px solid #e4e5f1;
+}
+.todos-container-light li .todo-text {
+  color: #484b6a;
+}
+.todos-container-light li .todo-text:hover {
+  color: #9394a5;
+}
+
+.check-box-light {
+  border: 1px solid #e4e5f1;
+}
+
+.checked-light {
+  color: #e4e5f1;
+}
+
 @media (max-width: 375px) {
   .todos-container {
     margin-top: 20px;
@@ -210,6 +243,16 @@ body {
   display: none;
 }
 
+.control-panel-light {
+  background-color: #fafafa;
+}
+.control-panel-light h4 {
+  color: #9394a5;
+}
+.control-panel-light .clear-completed:hover, .control-panel-light .filtering-btns-container h4:not(.selected):hover {
+  color: #484b6a;
+}
+
 @media (max-width: 375px) {
   .control-panel h4 {
     font-size: 0.8rem;
@@ -233,6 +276,9 @@ body {
   .filtering-btns-mobile .selected {
     color: #3a7bfd;
   }
+  .filtering-btns-mobile-light {
+    background-color: #fafafa;
+  }
 }
 @media (max-width: 750px) {
   .filtering-btns-container {
@@ -255,5 +301,8 @@ body {
   .filtering-btns-mobile .selected {
     color: #3a7bfd;
     cursor: pointer;
+  }
+  .filtering-btns-mobile-light {
+    background-color: #fafafa;
   }
 }/*# sourceMappingURL=main.css.map */
