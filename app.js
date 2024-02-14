@@ -20,6 +20,8 @@ function addTodo(){
     if(!(inputFieldValue === '')){
         //Create the new todo markup
         const newTodoHTML = document.createElement('li');
+        newTodoHTML.setAttribute('draggable', true);
+        newTodoHTML.classList.add('draggable');
         newTodoHTML.innerHTML = `
             <div class="check-box"></div>
             <h3 class="todo-text">${inputFieldValue}</h3>
@@ -33,6 +35,7 @@ function addTodo(){
         inputField.value = '';
         //Set the left items value
         leftItems();
+        //Filter todos when adding a new one
         filterTodos();
         //Light theme check box
         if(icon.src === 'http://127.0.0.1:5500/icons/icon-moon.svg'){
@@ -41,6 +44,8 @@ function addTodo(){
                 checkBoxLight.classList.add('check-box-light');
             });
         }
+        //Drag and Drop to new todos
+        dragAndDrop();
     }
     saveChanges();
 }
@@ -173,6 +178,14 @@ function filterTodos(){
             const parentTodo = todo.parentElement;
             parentTodo.style.display = 'grid';
         });
+    } else {
+        allTodos.forEach(todo=>{
+            todo.style.display = 'grid';
+        });
+        checkedTodos.forEach(todo=>{
+            const parentTodo = todo.parentElement;
+            parentTodo.style.display = 'none';
+        });
     }
 }
 
@@ -186,6 +199,7 @@ function toggleLightDark(){
 
     if(icon.src === 'http://127.0.0.1:5500/icons/icon-sun.svg'){
         icon.src = 'http://127.0.0.1:5500/icons/icon-moon.svg';
+        icon.alt = 'Moon icon';
         containerLight.classList.add('container-light');
         fieldContainerLight.classList.add('field-container-light');
         controlPanelLight.classList.add('control-panel-light');
@@ -196,6 +210,7 @@ function toggleLightDark(){
         });
     } else {
         icon.src = 'http://127.0.0.1:5500/icons/icon-sun.svg';
+        icon.alt = 'Sun icon';
         containerLight.classList.remove('container-light');
         fieldContainerLight.classList.remove('field-container-light');
         controlPanelLight.classList.remove('control-panel-light');
@@ -204,6 +219,51 @@ function toggleLightDark(){
         checkBoxesLight.forEach(checkBoxLight=>{
             checkBoxLight.classList.remove('check-box-light');
         });
+    }
+}
+
+function dragAndDrop(){
+    const draggables = document.querySelectorAll('.draggable');
+
+    draggables.forEach(draggable=>{
+        //Add the dragging class at the beginning of the drag
+        draggable.addEventListener('dragstart', ()=>{
+            draggable.classList.add('dragging');
+        });
+
+        //Remove the dragging class at the end of the drag
+        draggable.addEventListener('dragend', ()=>{
+            draggable.classList.remove('dragging');
+        });
+    });
+    //Handling the drag over functionality
+    todosContainer.addEventListener('dragover', e=>{
+        e.preventDefault();
+        const afterElement = getDragAfterElement(todosContainer, e.clientY);
+        const draggable = document.querySelector('.dragging');
+        if(afterElement === null){
+            todosContainer.appendChild(draggable);
+        } else {
+            todosContainer.insertBefore(draggable, afterElement);
+        }
+    });
+
+    //Determening which element to append before or after
+    function getDragAfterElement(container, y){
+        const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child)=>{
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height/2;
+            if(offset < 0 && offset > closest.offset){
+                return {
+                    offset: offset,
+                    element: child
+                }
+            } else {
+                return closest;
+            }
+        }, {offset: Number.NEGATIVE_INFINITY}).element;
     }
 }
 
@@ -223,7 +283,8 @@ completedBtn.addEventListener('pointerup', showCompleted.bind(null, allBtn, acti
 //Show active todos
 activeBtn.addEventListener('pointerup', showActive.bind(null, allBtn, activeBtn, completedBtn));
 //Getting the todos from the local storage
-todosContainer.innerHTML = localStorage.getItem('todos');
+implementChanges();
+//Counting the number of items left
 leftItems();
 
 //Filtering buttons for phones
@@ -233,3 +294,6 @@ completedBtnMobile.addEventListener('pointerup', showCompleted.bind(null, allBtn
 
 //Toggle light and dark themes
 lightDarkTheme.addEventListener('pointerup', toggleLightDark);
+
+//Drag and drop 
+dragAndDrop();

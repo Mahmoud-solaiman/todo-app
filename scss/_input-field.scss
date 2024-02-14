@@ -39,6 +39,10 @@
 //Light theme styles
 .field-container-light {
     background-color:$primary-light-color;
+
+    & #todos-grapper {
+        color:$filter-btns-color-light-hover;
+    }
 }
 
 @media (max-width:375px){

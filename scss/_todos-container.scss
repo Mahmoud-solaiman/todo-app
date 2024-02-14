@@ -77,6 +77,10 @@
     color:$todos-color;
 }
 
+.dragging {
+    opacity:.5;
+}
+
 @media (max-width:375px){
     .todos-container {
         margin-top:20px;

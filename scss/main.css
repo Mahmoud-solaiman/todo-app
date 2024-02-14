@@ -114,6 +114,9 @@ body {
 .field-container-light {
   background-color: #fafafa;
 }
+.field-container-light #todos-grapper {
+  color: #484b6a;
+}
 
 @media (max-width: 375px) {
   .field-container {
@@ -190,6 +193,10 @@ body {
 
 .checked-light {
   color: #e4e5f1;
+}
+
+.dragging {
+  opacity: 0.5;
 }
 
 @media (max-width: 375px) {
