@@ -29,6 +29,12 @@
     }
 }
 
+@media (max-width:750px){
+    .app-container {
+        width:80%;
+    }
+}
+
 @media (max-width:375px) {
     .app-container {
         width:90%;
