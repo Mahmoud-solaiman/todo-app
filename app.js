@@ -197,8 +197,8 @@ function toggleLightDark(){
     const filteringBtnsMobileLight = document.querySelector('.filtering-btns-mobile');
     const checkBoxesLight = document.querySelectorAll('.check-box');
 
-    if(icon.src === 'http://127.0.0.1:5500/icons/icon-sun.svg'){
-        icon.src = 'http://127.0.0.1:5500/icons/icon-moon.svg';
+    if(icon.src === 'https://mahmoud-solaiman.github.io/todo-app/icons/icon-sun.svg'){
+        icon.src = 'https://mahmoud-solaiman.github.io/todo-app/icons/icon-moon.svg';
         icon.alt = 'Moon icon';
         containerLight.classList.add('container-light');
         fieldContainerLight.classList.add('field-container-light');
@@ -209,7 +209,7 @@ function toggleLightDark(){
             checkBoxLight.classList.add('check-box-light');
         });
     } else {
-        icon.src = 'http://127.0.0.1:5500/icons/icon-sun.svg';
+        icon.src = 'https://mahmoud-solaiman.github.io/todo-app/icons/icon-sun.svg';
         icon.alt = 'Sun icon';
         containerLight.classList.remove('container-light');
         fieldContainerLight.classList.remove('field-container-light');
