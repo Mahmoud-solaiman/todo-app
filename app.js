@@ -178,7 +178,7 @@ function filterTodos(){
             const parentTodo = todo.parentElement;
             parentTodo.style.display = 'grid';
         });
-    } else {
+    } if(activeBtn.classList.contains('selected') || activeBtnMobile.classList.contains('selected')) {
         allTodos.forEach(todo=>{
             todo.style.display = 'grid';
         });
