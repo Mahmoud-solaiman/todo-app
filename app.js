@@ -297,3 +297,12 @@ lightDarkTheme.addEventListener('pointerup', toggleLightDark);
 
 //Drag and drop 
 dragAndDrop();
+
+//Enter key
+inputField.addEventListener('keydown', e =>{
+    if(e.key === 'Enter') {
+        addTodo();
+    } else {
+        console.log('something went wrong');
+    }
+});
